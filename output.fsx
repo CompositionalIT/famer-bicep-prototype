@@ -28,24 +28,40 @@ module ``2015-05-01-preview`` =
                 ``name`` = ``name``
                 ``useSubDomainName`` = ``useSubDomainName``
             }
+    type StatusOfSecondary =
+        | Available
+        | Unavailable
+    type StatusOfPrimary =
+        | Available
+        | Unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccountType =
+        | Standard_LRS
+        | Standard_ZRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Premium_LRS
     type StorageAccountPropertiesCreateParameters =
         {
             /// Gets or sets the account type.
-            ``accountType`` : obj // AccountType option
+            ``accountType`` : AccountType option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue or table object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The custom domain assigned to this storage account. This can be set via Update.
@@ -118,24 +134,40 @@ module ``2015-06-15`` =
                 ``name`` = ``name``
                 ``useSubDomainName`` = ``useSubDomainName``
             }
+    type StatusOfSecondary =
+        | Available
+        | Unavailable
+    type StatusOfPrimary =
+        | Available
+        | Unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccountType =
+        | Standard_LRS
+        | Standard_ZRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Premium_LRS
     type StorageAccountPropertiesCreateParameters =
         {
             /// The sku name. Required for account creation; optional for update. Note that in older versions, sku name was called accountType.
-            ``accountType`` : obj // AccountType
+            ``accountType`` : AccountType
             /// The status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue or table object.
             ``primaryEndpoints`` : Endpoints option
             /// The location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// The status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// The timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// The location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// The status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// The creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The custom domain assigned to this storage account. This can be set via Update.
@@ -197,6 +229,19 @@ module ``2016-01-01`` =
                 ``table`` = ``table``
                 ``file`` = ``file``
             }
+    type StatusOfSecondary =
+        | Available
+        | Unavailable
+    type StatusOfPrimary =
+        | Available
+        | Unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -249,21 +294,21 @@ module ``2016-01-01`` =
             /// The encryption settings on the storage account.
             ``encryption`` : Encryption option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
@@ -284,12 +329,24 @@ module ``2016-01-01`` =
                 ``creationTime`` = ``creationTime``
                 ``secondaryEndpoints`` = ``secondaryEndpoints``
             }
+    type Kind =
+        | Storage
+        | BlobStorage
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
     type Sku =
         {
             /// Gets or sets the sku name. Required for account creation; optional for update. Note that in older versions, sku name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the sku tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -305,7 +362,7 @@ module ``2016-01-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -341,6 +398,19 @@ module ``2016-05-01`` =
                 ``table`` = ``table``
                 ``file`` = ``file``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -393,21 +463,21 @@ module ``2016-05-01`` =
             /// The encryption settings on the storage account.
             ``encryption`` : Encryption option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
@@ -428,12 +498,24 @@ module ``2016-05-01`` =
                 ``creationTime`` = ``creationTime``
                 ``secondaryEndpoints`` = ``secondaryEndpoints``
             }
+    type Kind =
+        | Storage
+        | BlobStorage
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
     type Sku =
         {
             /// Gets or sets the sku name. Required for account creation; optional for update. Note that in older versions, sku name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the sku tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -449,7 +531,7 @@ module ``2016-05-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -486,6 +568,19 @@ module ``2016-12-01`` =
                 ``table`` = ``table``
                 ``file`` = ``file``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -547,23 +642,23 @@ module ``2016-12-01`` =
             /// The encryption settings on the storage account.
             ``encryption`` : Encryption option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Allows https traffic only to storage service if sets to true.
             ``supportsHttpsTrafficOnly`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
@@ -585,12 +680,24 @@ module ``2016-12-01`` =
                 ``creationTime`` = ``creationTime``
                 ``secondaryEndpoints`` = ``secondaryEndpoints``
             }
+    type Kind =
+        | Storage
+        | BlobStorage
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
     type Sku =
         {
             /// Gets or sets the sku name. Required for account creation; optional for update. Note that in older versions, sku name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the sku tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -606,7 +713,7 @@ module ``2016-12-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -643,6 +750,22 @@ module ``2017-06-01`` =
                 ``table`` = ``table``
                 ``file`` = ``file``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -652,28 +775,39 @@ module ``2017-06-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
                 ``id`` = ``id``
                 ``state`` = ``state``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -697,6 +831,9 @@ module ``2017-06-01`` =
                 ``keyversion`` = ``keyversion``
                 ``keyvaulturi`` = ``keyvaulturi``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -732,7 +869,7 @@ module ``2017-06-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// Properties of key vault.
             ``keyvaultproperties`` : KeyVaultProperties option
         }
@@ -763,23 +900,23 @@ module ``2017-06-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Allows https traffic only to storage service if sets to true.
             ``supportsHttpsTrafficOnly`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
@@ -817,6 +954,12 @@ module ``2017-06-01`` =
                 ``tenantId`` = ``tenantId``
                 ``type`` = ``type``
             }
+    type Kind =
+        | Storage
+        | BlobStorage
+    type ReasonCode =
+        | QuotaId
+        | NotAvailableForSubscription
     type Restriction =
         {
             /// The type of restrictions. As of now only possible value for this is location.
@@ -824,7 +967,7 @@ module ``2017-06-01`` =
             /// The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
             ``values`` : string array option
             /// The reason for the restriction. As of now this can be "QuotaId" or "NotAvailableForSubscription". Quota Id is set when the SKU has requiredQuotas parameter as the subscription does not belong to that quota. The "NotAvailableForSubscription" is related to capacity at DC.
-            ``reasonCode`` : obj // ReasonCode option
+            ``reasonCode`` : ReasonCode option
         }
         static member create(?``type``, ?``values``, ?``reasonCode``) =
             {
@@ -844,16 +987,25 @@ module ``2017-06-01`` =
                 ``name`` = ``name``
                 ``value`` = ``value``
             }
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
     type Sku =
         {
             /// Gets or sets the sku name. Required for account creation; optional for update. Note that in older versions, sku name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the sku tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
             /// The type of the resource, usually it is 'storageAccounts'.
             ``resourceType`` : string option
             /// Indicates the type of storage account.
-            ``kind`` : obj // Kind option
+            ``kind`` : Kind option
             /// The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
             ``locations`` : string array option
             /// The capability information in the specified sku, including file encryption, network acls, change notification, etc.
@@ -880,7 +1032,7 @@ module ``2017-06-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -920,6 +1072,22 @@ module ``2017-10-01`` =
                 ``table`` = ``table``
                 ``file`` = ``file``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -929,28 +1097,39 @@ module ``2017-10-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
                 ``id`` = ``id``
                 ``state`` = ``state``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -974,6 +1153,9 @@ module ``2017-10-01`` =
                 ``keyversion`` = ``keyversion``
                 ``keyvaulturi`` = ``keyvaulturi``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -1009,7 +1191,7 @@ module ``2017-10-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// Properties of key vault.
             ``keyvaultproperties`` : KeyVaultProperties option
         }
@@ -1040,23 +1222,23 @@ module ``2017-10-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Allows https traffic only to storage service if sets to true.
             ``supportsHttpsTrafficOnly`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, or table object.
@@ -1094,6 +1276,13 @@ module ``2017-10-01`` =
                 ``tenantId`` = ``tenantId``
                 ``type`` = ``type``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+    type ReasonCode =
+        | QuotaId
+        | NotAvailableForSubscription
     type Restriction =
         {
             /// The type of restrictions. As of now only possible value for this is location.
@@ -1101,7 +1290,7 @@ module ``2017-10-01`` =
             /// The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
             ``values`` : string array option
             /// The reason for the restriction. As of now this can be "QuotaId" or "NotAvailableForSubscription". Quota Id is set when the SKU has requiredQuotas parameter as the subscription does not belong to that quota. The "NotAvailableForSubscription" is related to capacity at DC.
-            ``reasonCode`` : obj // ReasonCode option
+            ``reasonCode`` : ReasonCode option
         }
         static member create(?``type``, ?``values``, ?``reasonCode``) =
             {
@@ -1121,16 +1310,25 @@ module ``2017-10-01`` =
                 ``name`` = ``name``
                 ``value`` = ``value``
             }
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
     type Sku =
         {
             /// Gets or sets the sku name. Required for account creation; optional for update. Note that in older versions, sku name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the sku tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
             /// The type of the resource, usually it is 'storageAccounts'.
             ``resourceType`` : string option
             /// Indicates the type of storage account.
-            ``kind`` : obj // Kind option
+            ``kind`` : Kind option
             /// The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
             ``locations`` : string array option
             /// The capability information in the specified sku, including file encryption, network acls, change notification, etc.
@@ -1157,7 +1355,7 @@ module ``2017-10-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -1203,6 +1401,22 @@ module ``2018-02-01`` =
                 ``web`` = ``web``
                 ``dfs`` = ``dfs``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -1212,28 +1426,39 @@ module ``2018-02-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
                 ``id`` = ``id``
                 ``state`` = ``state``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -1257,6 +1482,9 @@ module ``2018-02-01`` =
                 ``keyversion`` = ``keyversion``
                 ``keyvaulturi`` = ``keyvaulturi``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -1292,7 +1520,7 @@ module ``2018-02-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// Properties of key vault.
             ``keyvaultproperties`` : KeyVaultProperties option
         }
@@ -1323,25 +1551,25 @@ module ``2018-02-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Allows https traffic only to storage service if sets to true.
             ``supportsHttpsTrafficOnly`` : bool option
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -1380,6 +1608,13 @@ module ``2018-02-01`` =
                 ``tenantId`` = ``tenantId``
                 ``type`` = ``type``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+    type ReasonCode =
+        | QuotaId
+        | NotAvailableForSubscription
     type Restriction =
         {
             /// The type of restrictions. As of now only possible value for this is location.
@@ -1387,7 +1622,7 @@ module ``2018-02-01`` =
             /// The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
             ``values`` : string array option
             /// The reason for the restriction. As of now this can be "QuotaId" or "NotAvailableForSubscription". Quota Id is set when the SKU has requiredQuotas parameter as the subscription does not belong to that quota. The "NotAvailableForSubscription" is related to capacity at DC.
-            ``reasonCode`` : obj // ReasonCode option
+            ``reasonCode`` : ReasonCode option
         }
         static member create(?``type``, ?``values``, ?``reasonCode``) =
             {
@@ -1407,16 +1642,25 @@ module ``2018-02-01`` =
                 ``name`` = ``name``
                 ``value`` = ``value``
             }
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
     type Sku =
         {
             /// Gets or sets the sku name. Required for account creation; optional for update. Note that in older versions, sku name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the sku tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
             /// The type of the resource, usually it is 'storageAccounts'.
             ``resourceType`` : string option
             /// Indicates the type of storage account.
-            ``kind`` : obj // Kind option
+            ``kind`` : Kind option
             /// The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
             ``locations`` : string array option
             /// The capability information in the specified sku, including file encryption, network acls, change notification, etc.
@@ -1443,7 +1687,7 @@ module ``2018-02-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -1489,6 +1733,22 @@ module ``2018-03-01-preview`` =
                 ``web`` = ``web``
                 ``dfs`` = ``dfs``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -1498,28 +1758,39 @@ module ``2018-03-01-preview`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
                 ``id`` = ``id``
                 ``state`` = ``state``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -1543,6 +1814,9 @@ module ``2018-03-01-preview`` =
                 ``keyversion`` = ``keyversion``
                 ``keyvaulturi`` = ``keyvaulturi``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -1578,7 +1852,7 @@ module ``2018-03-01-preview`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// Properties of key vault.
             ``keyvaultproperties`` : KeyVaultProperties option
         }
@@ -1609,25 +1883,25 @@ module ``2018-03-01-preview`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Allows https traffic only to storage service if sets to true.
             ``supportsHttpsTrafficOnly`` : bool option
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -1666,6 +1940,13 @@ module ``2018-03-01-preview`` =
                 ``tenantId`` = ``tenantId``
                 ``type`` = ``type``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+    type ReasonCode =
+        | QuotaId
+        | NotAvailableForSubscription
     type Restriction =
         {
             /// The type of restrictions. As of now only possible value for this is location.
@@ -1673,7 +1954,7 @@ module ``2018-03-01-preview`` =
             /// The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
             ``values`` : string array option
             /// The reason for the restriction. As of now this can be "QuotaId" or "NotAvailableForSubscription". Quota Id is set when the SKU has requiredQuotas parameter as the subscription does not belong to that quota. The "NotAvailableForSubscription" is related to capacity at DC.
-            ``reasonCode`` : obj // ReasonCode option
+            ``reasonCode`` : ReasonCode option
         }
         static member create(?``type``, ?``values``, ?``reasonCode``) =
             {
@@ -1693,16 +1974,25 @@ module ``2018-03-01-preview`` =
                 ``name`` = ``name``
                 ``value`` = ``value``
             }
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
     type Sku =
         {
             /// Gets or sets the sku name. Required for account creation; optional for update. Note that in older versions, sku name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the sku tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
             /// The type of the resource, usually it is 'storageAccounts'.
             ``resourceType`` : string option
             /// Indicates the type of storage account.
-            ``kind`` : obj // Kind option
+            ``kind`` : Kind option
             /// The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
             ``locations`` : string array option
             /// The capability information in the specified sku, including file encryption, network acls, change notification, etc.
@@ -1729,7 +2019,7 @@ module ``2018-03-01-preview`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -1751,10 +2041,14 @@ module ``2018-03-01-preview`` =
                 ``properties`` = ``properties``
             }
 module ``2018-07-01`` =
+    type Status =
+        | Live
+        | Bootstrap
+        | Unavailable
     type GeoReplicationStats =
         {
             /// The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.
             ``lastSyncTime`` : string option
             /// A boolean flag which indicates whether or not account failover is supported for the account.
@@ -1790,6 +2084,22 @@ module ``2018-07-01`` =
                 ``web`` = ``web``
                 ``dfs`` = ``dfs``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -1799,28 +2109,39 @@ module ``2018-07-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
                 ``id`` = ``id``
                 ``state`` = ``state``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -1844,6 +2165,9 @@ module ``2018-07-01`` =
                 ``keyversion`` = ``keyversion``
                 ``keyvaulturi`` = ``keyvaulturi``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -1879,7 +2203,7 @@ module ``2018-07-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// Properties of key vault.
             ``keyvaultproperties`` : KeyVaultProperties option
         }
@@ -1910,7 +2234,7 @@ module ``2018-07-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Enables Azure Files AAD Integration for SMB if sets to true.
             ``azureFilesAadIntegration`` : bool option
             /// Allows https traffic only to storage service if sets to true.
@@ -1918,19 +2242,19 @@ module ``2018-07-01`` =
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -1976,6 +2300,15 @@ module ``2018-07-01`` =
                 ``tenantId`` = ``tenantId``
                 ``type`` = ``type``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+        | FileStorage
+        | BlockBlobStorage
+    type ReasonCode =
+        | QuotaId
+        | NotAvailableForSubscription
     type Restriction =
         {
             /// The type of restrictions. As of now only possible value for this is location.
@@ -1983,7 +2316,7 @@ module ``2018-07-01`` =
             /// The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
             ``values`` : string array option
             /// The reason for the restriction. As of now this can be "QuotaId" or "NotAvailableForSubscription". Quota Id is set when the SKU has requiredQuotas parameter as the subscription does not belong to that quota. The "NotAvailableForSubscription" is related to capacity at DC.
-            ``reasonCode`` : obj // ReasonCode option
+            ``reasonCode`` : ReasonCode option
         }
         static member create(?``type``, ?``values``, ?``reasonCode``) =
             {
@@ -2003,16 +2336,26 @@ module ``2018-07-01`` =
                 ``name`` = ``name``
                 ``value`` = ``value``
             }
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
     type Sku =
         {
             /// Gets or sets the SKU name. Required for account creation; optional for update. Note that in older versions, SKU name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the SKU tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
             /// The type of the resource, usually it is 'storageAccounts'.
             ``resourceType`` : string option
             /// Indicates the type of storage account.
-            ``kind`` : obj // Kind option
+            ``kind`` : Kind option
             /// The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
             ``locations`` : string array option
             /// The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc.
@@ -2039,7 +2382,7 @@ module ``2018-07-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -2061,10 +2404,14 @@ module ``2018-07-01`` =
                 ``properties`` = ``properties``
             }
 module ``2018-11-01`` =
+    type Status =
+        | Live
+        | Bootstrap
+        | Unavailable
     type GeoReplicationStats =
         {
             /// The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.
             ``lastSyncTime`` : string option
             /// A boolean flag which indicates whether or not account failover is supported for the account.
@@ -2100,6 +2447,22 @@ module ``2018-11-01`` =
                 ``web`` = ``web``
                 ``dfs`` = ``dfs``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -2109,28 +2472,39 @@ module ``2018-11-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
                 ``id`` = ``id``
                 ``state`` = ``state``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -2154,6 +2528,9 @@ module ``2018-11-01`` =
                 ``keyversion`` = ``keyversion``
                 ``keyvaulturi`` = ``keyvaulturi``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -2189,7 +2566,7 @@ module ``2018-11-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// Properties of key vault.
             ``keyvaultproperties`` : KeyVaultProperties option
         }
@@ -2220,7 +2597,7 @@ module ``2018-11-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Enables Azure Files AAD Integration for SMB if sets to true.
             ``azureFilesAadIntegration`` : bool option
             /// Allows https traffic only to storage service if sets to true.
@@ -2228,19 +2605,19 @@ module ``2018-11-01`` =
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -2286,6 +2663,15 @@ module ``2018-11-01`` =
                 ``tenantId`` = ``tenantId``
                 ``type`` = ``type``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+        | FileStorage
+        | BlockBlobStorage
+    type ReasonCode =
+        | QuotaId
+        | NotAvailableForSubscription
     type Restriction =
         {
             /// The type of restrictions. As of now only possible value for this is location.
@@ -2293,7 +2679,7 @@ module ``2018-11-01`` =
             /// The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
             ``values`` : string array option
             /// The reason for the restriction. As of now this can be "QuotaId" or "NotAvailableForSubscription". Quota Id is set when the SKU has requiredQuotas parameter as the subscription does not belong to that quota. The "NotAvailableForSubscription" is related to capacity at DC.
-            ``reasonCode`` : obj // ReasonCode option
+            ``reasonCode`` : ReasonCode option
         }
         static member create(?``type``, ?``values``, ?``reasonCode``) =
             {
@@ -2313,16 +2699,26 @@ module ``2018-11-01`` =
                 ``name`` = ``name``
                 ``value`` = ``value``
             }
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
     type Sku =
         {
             /// Gets or sets the SKU name. Required for account creation; optional for update. Note that in older versions, SKU name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the SKU tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
             /// The type of the resource, usually it is 'storageAccounts'.
             ``resourceType`` : string option
             /// Indicates the type of storage account.
-            ``kind`` : obj // Kind option
+            ``kind`` : Kind option
             /// The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
             ``locations`` : string array option
             /// The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc.
@@ -2349,7 +2745,7 @@ module ``2018-11-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -2371,10 +2767,14 @@ module ``2018-11-01`` =
                 ``properties`` = ``properties``
             }
 module ``2019-04-01`` =
+    type Status =
+        | Live
+        | Bootstrap
+        | Unavailable
     type GeoReplicationStats =
         {
             /// The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.
             ``lastSyncTime`` : string option
             /// A boolean flag which indicates whether or not account failover is supported for the account.
@@ -2410,6 +2810,23 @@ module ``2019-04-01`` =
                 ``web`` = ``web``
                 ``dfs`` = ``dfs``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type MinimumTlsVersion =
+        | TLS1_0
+        | TLS1_1
+        | TLS1_2
+    type LargeFileSharesState =
+        | Disabled
+        | Enabled
     type ActiveDirectoryProperties =
         {
             /// Specifies the primary domain that the AD DNS server is authoritative for.
@@ -2434,10 +2851,14 @@ module ``2019-04-01`` =
                 ``domainSid`` = ``domainSid``
                 ``azureStorageSid`` = ``azureStorageSid``
             }
+    type DirectoryServiceOptions =
+        | None
+        | AADDS
+        | AD
     type AzureFilesIdentityBasedAuthentication =
         {
             /// Indicates the directory service used.
-            ``directoryServiceOptions`` : obj // DirectoryServiceOptions
+            ``directoryServiceOptions`` : DirectoryServiceOptions
             /// Settings properties for Active Directory (AD).
             ``activeDirectoryProperties`` : ActiveDirectoryProperties option
         }
@@ -2446,6 +2867,12 @@ module ``2019-04-01`` =
                 ``directoryServiceOptions`` = ``directoryServiceOptions``
                 ``activeDirectoryProperties`` = ``activeDirectoryProperties``
             }
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -2455,28 +2882,39 @@ module ``2019-04-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
                 ``id`` = ``id``
                 ``state`` = ``state``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -2500,6 +2938,9 @@ module ``2019-04-01`` =
                 ``keyversion`` = ``keyversion``
                 ``keyvaulturi`` = ``keyvaulturi``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -2535,7 +2976,7 @@ module ``2019-04-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// Properties of key vault.
             ``keyvaultproperties`` : KeyVaultProperties option
         }
@@ -2566,7 +3007,7 @@ module ``2019-04-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Settings for Azure Files identity based authentication.
             ``azureFilesIdentityBasedAuthentication`` : AzureFilesIdentityBasedAuthentication option
             /// Allows https traffic only to storage service if sets to true. The default value is true since API version 2019-04-01.
@@ -2574,27 +3015,27 @@ module ``2019-04-01`` =
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled.
-            ``largeFileSharesState`` : obj // LargeFileSharesState option
+            ``largeFileSharesState`` : LargeFileSharesState option
             /// Allow or disallow public access to all blobs or containers in the storage account. The default interpretation is true for this property.
             ``allowBlobPublicAccess`` : bool option
             /// Set the minimum TLS version to be permitted on requests to storage. The default interpretation is TLS 1.0 for this property.
-            ``minimumTlsVersion`` : obj // MinimumTlsVersion option
+            ``minimumTlsVersion`` : MinimumTlsVersion option
             /// Indicates whether the storage account permits requests to be authorized with the account access key via Shared Key. If false, then all requests, including shared access signatures, must be authorized with Azure Active Directory (Azure AD). The default value is null, which is equivalent to true.
             ``allowSharedKeyAccess`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -2644,6 +3085,15 @@ module ``2019-04-01`` =
                 ``tenantId`` = ``tenantId``
                 ``type`` = ``type``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+        | FileStorage
+        | BlockBlobStorage
+    type ReasonCode =
+        | QuotaId
+        | NotAvailableForSubscription
     type Restriction =
         {
             /// The type of restrictions. As of now only possible value for this is location.
@@ -2651,7 +3101,7 @@ module ``2019-04-01`` =
             /// The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
             ``values`` : string array option
             /// The reason for the restriction. As of now this can be "QuotaId" or "NotAvailableForSubscription". Quota Id is set when the SKU has requiredQuotas parameter as the subscription does not belong to that quota. The "NotAvailableForSubscription" is related to capacity at DC.
-            ``reasonCode`` : obj // ReasonCode option
+            ``reasonCode`` : ReasonCode option
         }
         static member create(?``type``, ?``values``, ?``reasonCode``) =
             {
@@ -2671,16 +3121,28 @@ module ``2019-04-01`` =
                 ``name`` = ``name``
                 ``value`` = ``value``
             }
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
             /// Gets or sets the SKU name. Required for account creation; optional for update. Note that in older versions, SKU name was called accountType.
-            ``name`` : obj // Name
+            ``name`` : Name
             /// Gets the SKU tier. This is based on the SKU name.
-            ``tier`` : obj // Tier option
+            ``tier`` : Tier option
             /// The type of the resource, usually it is 'storageAccounts'.
             ``resourceType`` : string option
             /// Indicates the type of storage account.
-            ``kind`` : obj // Kind option
+            ``kind`` : Kind option
             /// The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
             ``locations`` : string array option
             /// The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc.
@@ -2707,7 +3169,7 @@ module ``2019-04-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -2753,10 +3215,14 @@ module ``2019-06-01`` =
                 ``timeToRestore`` = ``timeToRestore``
                 ``blobRanges`` = ``blobRanges``
             }
+    type Status =
+        | InProgress
+        | Complete
+        | Failed
     type BlobRestoreStatus =
         {
             /// The status of blob restore progress. Possible values are: - InProgress: Indicates that blob restore is ongoing. - Complete: Indicates that blob restore has been completed successfully. - Failed: Indicates that blob restore is failed.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// Failure reason when blob restore is failed.
             ``failureReason`` : string option
             /// Id for tracking blob restore request.
@@ -2771,10 +3237,19 @@ module ``2019-06-01`` =
                 ``restoreId`` = ``restoreId``
                 ``parameters`` = ``parameters``
             }
+    type ProvisioningState =
+        | Succeeded
+        | Creating
+        | Deleting
+        | Failed
+    type Status =
+        | Pending
+        | Approved
+        | Rejected
     type PrivateLinkServiceConnectionState =
         {
             /// Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// The reason for approval/rejection of the connection.
             ``description`` : string option
             /// A message indicating if changes on the service provider require any updates on the consumer.
@@ -2802,7 +3277,7 @@ module ``2019-06-01`` =
             /// A collection of information about the state of the connection between service consumer and provider.
             ``privateLinkServiceConnectionState`` : PrivateLinkServiceConnectionState option
             /// The provisioning state of the private endpoint connection resource.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
         }
         static member create(?``privateEndpoint``, ?``privateLinkServiceConnectionState``, ?``provisioningState``) =
             {
@@ -2828,10 +3303,14 @@ module ``2019-06-01`` =
                 ``type`` = ``type``
                 ``properties`` = ``properties``
             }
+    type Status =
+        | Live
+        | Bootstrap
+        | Unavailable
     type GeoReplicationStats =
         {
             /// The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.
             ``lastSyncTime`` : string option
             /// A boolean flag which indicates whether or not account failover is supported for the account.
@@ -2915,10 +3394,27 @@ module ``2019-06-01`` =
                 ``microsoftEndpoints`` = ``microsoftEndpoints``
                 ``internetEndpoints`` = ``internetEndpoints``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type MinimumTlsVersion =
+        | TLS1_0
+        | TLS1_1
+        | TLS1_2
+    type RoutingChoice =
+        | MicrosoftRouting
+        | InternetRouting
     type RoutingPreference =
         {
             /// Routing Choice defines the kind of network routing opted by the user.
-            ``routingChoice`` : obj // RoutingChoice option
+            ``routingChoice`` : RoutingChoice option
             /// A boolean flag which indicates whether microsoft routing storage endpoints are to be published
             ``publishMicrosoftEndpoints`` : bool option
             /// A boolean flag which indicates whether internet routing storage endpoints are to be published
@@ -2930,6 +3426,9 @@ module ``2019-06-01`` =
                 ``publishMicrosoftEndpoints`` = ``publishMicrosoftEndpoints``
                 ``publishInternetEndpoints`` = ``publishInternetEndpoints``
             }
+    type LargeFileSharesState =
+        | Disabled
+        | Enabled
     type ActiveDirectoryProperties =
         {
             /// Specifies the primary domain that the AD DNS server is authoritative for.
@@ -2954,10 +3453,14 @@ module ``2019-06-01`` =
                 ``domainSid`` = ``domainSid``
                 ``azureStorageSid`` = ``azureStorageSid``
             }
+    type DirectoryServiceOptions =
+        | None
+        | AADDS
+        | AD
     type AzureFilesIdentityBasedAuthentication =
         {
             /// Indicates the directory service used.
-            ``directoryServiceOptions`` : obj // DirectoryServiceOptions
+            ``directoryServiceOptions`` : DirectoryServiceOptions
             /// Settings properties for Active Directory (AD).
             ``activeDirectoryProperties`` : ActiveDirectoryProperties option
         }
@@ -2966,6 +3469,12 @@ module ``2019-06-01`` =
                 ``directoryServiceOptions`` = ``directoryServiceOptions``
                 ``activeDirectoryProperties`` = ``activeDirectoryProperties``
             }
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -2975,28 +3484,39 @@ module ``2019-06-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
                 ``id`` = ``id``
                 ``state`` = ``state``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -3026,6 +3546,12 @@ module ``2019-06-01`` =
                 ``currentVersionedKeyIdentifier`` = ``currentVersionedKeyIdentifier``
                 ``lastKeyRotationTimestamp`` = ``lastKeyRotationTimestamp``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
+    type KeyType =
+        | Service
+        | Account
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -3033,7 +3559,7 @@ module ``2019-06-01`` =
             /// Gets a rough estimate of the date/time when the encryption was last enabled by the user. Only returned when encryption is enabled. There might be some unencrypted blobs which were written after this time, as it is just a rough estimate.
             ``lastEnabledTime`` : string option
             /// Encryption key type to be used for the encryption service. 'Account' key type implies that an account-scoped encryption key will be used. 'Service' key type implies that a default service key is used.
-            ``keyType`` : obj // KeyType option
+            ``keyType`` : KeyType option
         }
         static member create(?``enabled``, ?``lastEnabledTime``, ?``keyType``) =
             {
@@ -3064,7 +3590,7 @@ module ``2019-06-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// A boolean indicating whether or not the service applies a secondary layer of encryption with platform managed keys for data at rest.
             ``requireInfrastructureEncryption`` : bool option
             /// Properties of key vault.
@@ -3098,7 +3624,7 @@ module ``2019-06-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Settings for Azure Files identity based authentication.
             ``azureFilesIdentityBasedAuthentication`` : AzureFilesIdentityBasedAuthentication option
             /// Allows https traffic only to storage service if sets to true. The default value is true since API version 2019-04-01.
@@ -3106,29 +3632,29 @@ module ``2019-06-01`` =
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled.
-            ``largeFileSharesState`` : obj // LargeFileSharesState option
+            ``largeFileSharesState`` : LargeFileSharesState option
             /// Routing preference defines the type of network, either microsoft or internet routing to be used to deliver the user data, the default option is microsoft routing
             ``routingPreference`` : RoutingPreference option
             /// Allow or disallow public access to all blobs or containers in the storage account. The default interpretation is true for this property.
             ``allowBlobPublicAccess`` : bool option
             /// Set the minimum TLS version to be permitted on requests to storage. The default interpretation is TLS 1.0 for this property.
-            ``minimumTlsVersion`` : obj // MinimumTlsVersion option
+            ``minimumTlsVersion`` : MinimumTlsVersion option
             /// Indicates whether the storage account permits requests to be authorized with the account access key via Shared Key. If false, then all requests, including shared access signatures, must be authorized with Azure Active Directory (Azure AD). The default value is null, which is equivalent to true.
             ``allowSharedKeyAccess`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -3185,10 +3711,28 @@ module ``2019-06-01`` =
                 ``tenantId`` = ``tenantId``
                 ``type`` = ``type``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+        | FileStorage
+        | BlockBlobStorage
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -3204,7 +3748,7 @@ module ``2019-06-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters.
@@ -3250,10 +3794,14 @@ module ``2020-08-01-preview`` =
                 ``timeToRestore`` = ``timeToRestore``
                 ``blobRanges`` = ``blobRanges``
             }
+    type Status =
+        | InProgress
+        | Complete
+        | Failed
     type BlobRestoreStatus =
         {
             /// The status of blob restore progress. Possible values are: - InProgress: Indicates that blob restore is ongoing. - Complete: Indicates that blob restore has been completed successfully. - Failed: Indicates that blob restore is failed.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// Failure reason when blob restore is failed.
             ``failureReason`` : string option
             /// Id for tracking blob restore request.
@@ -3268,10 +3816,19 @@ module ``2020-08-01-preview`` =
                 ``restoreId`` = ``restoreId``
                 ``parameters`` = ``parameters``
             }
+    type ProvisioningState =
+        | Succeeded
+        | Creating
+        | Deleting
+        | Failed
+    type Status =
+        | Pending
+        | Approved
+        | Rejected
     type PrivateLinkServiceConnectionState =
         {
             /// Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// The reason for approval/rejection of the connection.
             ``description`` : string option
             /// A message indicating if changes on the service provider require any updates on the consumer.
@@ -3299,7 +3856,7 @@ module ``2020-08-01-preview`` =
             /// A collection of information about the state of the connection between service consumer and provider.
             ``privateLinkServiceConnectionState`` : PrivateLinkServiceConnectionState option
             /// The provisioning state of the private endpoint connection resource.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
         }
         static member create(?``privateEndpoint``, ?``privateLinkServiceConnectionState``, ?``provisioningState``) =
             {
@@ -3325,10 +3882,14 @@ module ``2020-08-01-preview`` =
                 ``type`` = ``type``
                 ``properties`` = ``properties``
             }
+    type Status =
+        | Live
+        | Bootstrap
+        | Unavailable
     type GeoReplicationStats =
         {
             /// The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.
             ``lastSyncTime`` : string option
             /// A boolean flag which indicates whether or not account failover is supported for the account.
@@ -3412,10 +3973,27 @@ module ``2020-08-01-preview`` =
                 ``microsoftEndpoints`` = ``microsoftEndpoints``
                 ``internetEndpoints`` = ``internetEndpoints``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type MinimumTlsVersion =
+        | TLS1_0
+        | TLS1_1
+        | TLS1_2
+    type RoutingChoice =
+        | MicrosoftRouting
+        | InternetRouting
     type RoutingPreference =
         {
             /// Routing Choice defines the kind of network routing opted by the user.
-            ``routingChoice`` : obj // RoutingChoice option
+            ``routingChoice`` : RoutingChoice option
             /// A boolean flag which indicates whether microsoft routing storage endpoints are to be published
             ``publishMicrosoftEndpoints`` : bool option
             /// A boolean flag which indicates whether internet routing storage endpoints are to be published
@@ -3427,6 +4005,9 @@ module ``2020-08-01-preview`` =
                 ``publishMicrosoftEndpoints`` = ``publishMicrosoftEndpoints``
                 ``publishInternetEndpoints`` = ``publishInternetEndpoints``
             }
+    type LargeFileSharesState =
+        | Disabled
+        | Enabled
     type ActiveDirectoryProperties =
         {
             /// Specifies the primary domain that the AD DNS server is authoritative for.
@@ -3451,10 +4032,14 @@ module ``2020-08-01-preview`` =
                 ``domainSid`` = ``domainSid``
                 ``azureStorageSid`` = ``azureStorageSid``
             }
+    type DirectoryServiceOptions =
+        | None
+        | AADDS
+        | AD
     type AzureFilesIdentityBasedAuthentication =
         {
             /// Indicates the directory service used.
-            ``directoryServiceOptions`` : obj // DirectoryServiceOptions
+            ``directoryServiceOptions`` : DirectoryServiceOptions
             /// Settings properties for Active Directory (AD).
             ``activeDirectoryProperties`` : ActiveDirectoryProperties option
         }
@@ -3463,6 +4048,12 @@ module ``2020-08-01-preview`` =
                 ``directoryServiceOptions`` = ``directoryServiceOptions``
                 ``activeDirectoryProperties`` = ``activeDirectoryProperties``
             }
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -3472,12 +4063,18 @@ module ``2020-08-01-preview`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
@@ -3496,17 +4093,22 @@ module ``2020-08-01-preview`` =
                 ``tenantId`` = ``tenantId``
                 ``resourceId`` = ``resourceId``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             ``resourceAccessRules`` : ResourceAccessRule array option
             /// Sets the virtual network rules
             ``virtualNetworkRules`` : VirtualNetworkRule array option
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``resourceAccessRules``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -3537,6 +4139,12 @@ module ``2020-08-01-preview`` =
                 ``currentVersionedKeyIdentifier`` = ``currentVersionedKeyIdentifier``
                 ``lastKeyRotationTimestamp`` = ``lastKeyRotationTimestamp``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
+    type KeyType =
+        | Service
+        | Account
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -3544,7 +4152,7 @@ module ``2020-08-01-preview`` =
             /// Gets a rough estimate of the date/time when the encryption was last enabled by the user. Only returned when encryption is enabled. There might be some unencrypted blobs which were written after this time, as it is just a rough estimate.
             ``lastEnabledTime`` : string option
             /// Encryption key type to be used for the encryption service. 'Account' key type implies that an account-scoped encryption key will be used. 'Service' key type implies that a default service key is used.
-            ``keyType`` : obj // KeyType option
+            ``keyType`` : KeyType option
         }
         static member create(?``enabled``, ?``lastEnabledTime``, ?``keyType``) =
             {
@@ -3575,7 +4183,7 @@ module ``2020-08-01-preview`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// A boolean indicating whether or not the service applies a secondary layer of encryption with platform managed keys for data at rest.
             ``requireInfrastructureEncryption`` : bool option
             /// Properties of key vault.
@@ -3609,7 +4217,7 @@ module ``2020-08-01-preview`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Settings for Azure Files identity based authentication.
             ``azureFilesIdentityBasedAuthentication`` : AzureFilesIdentityBasedAuthentication option
             /// Allows https traffic only to storage service if sets to true. The default value is true since API version 2019-04-01.
@@ -3617,29 +4225,29 @@ module ``2020-08-01-preview`` =
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled.
-            ``largeFileSharesState`` : obj // LargeFileSharesState option
+            ``largeFileSharesState`` : LargeFileSharesState option
             /// Routing preference defines the type of network, either microsoft or internet routing to be used to deliver the user data, the default option is microsoft routing
             ``routingPreference`` : RoutingPreference option
             /// Allow or disallow public access to all blobs or containers in the storage account. The default interpretation is true for this property.
             ``allowBlobPublicAccess`` : bool option
             /// Set the minimum TLS version to be permitted on requests to storage. The default interpretation is TLS 1.0 for this property.
-            ``minimumTlsVersion`` : obj // MinimumTlsVersion option
+            ``minimumTlsVersion`` : MinimumTlsVersion option
             /// Indicates whether the storage account permits requests to be authorized with the account access key via Shared Key. If false, then all requests, including shared access signatures, must be authorized with Azure Active Directory (Azure AD). The default value is null, which is equivalent to true.
             ``allowSharedKeyAccess`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -3705,10 +4313,28 @@ module ``2020-08-01-preview`` =
             {
                 ``name`` = ``name``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+        | FileStorage
+        | BlockBlobStorage
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -3724,7 +4350,7 @@ module ``2020-08-01-preview`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// The complex type of the extended location.
@@ -3773,10 +4399,14 @@ module ``2021-01-01`` =
                 ``timeToRestore`` = ``timeToRestore``
                 ``blobRanges`` = ``blobRanges``
             }
+    type Status =
+        | InProgress
+        | Complete
+        | Failed
     type BlobRestoreStatus =
         {
             /// The status of blob restore progress. Possible values are: - InProgress: Indicates that blob restore is ongoing. - Complete: Indicates that blob restore has been completed successfully. - Failed: Indicates that blob restore is failed.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// Failure reason when blob restore is failed.
             ``failureReason`` : string option
             /// Id for tracking blob restore request.
@@ -3791,10 +4421,19 @@ module ``2021-01-01`` =
                 ``restoreId`` = ``restoreId``
                 ``parameters`` = ``parameters``
             }
+    type ProvisioningState =
+        | Succeeded
+        | Creating
+        | Deleting
+        | Failed
+    type Status =
+        | Pending
+        | Approved
+        | Rejected
     type PrivateLinkServiceConnectionState =
         {
             /// Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// The reason for approval/rejection of the connection.
             ``description`` : string option
             /// A message indicating if changes on the service provider require any updates on the consumer.
@@ -3822,7 +4461,7 @@ module ``2021-01-01`` =
             /// A collection of information about the state of the connection between service consumer and provider.
             ``privateLinkServiceConnectionState`` : PrivateLinkServiceConnectionState option
             /// The provisioning state of the private endpoint connection resource.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
         }
         static member create(?``privateEndpoint``, ?``privateLinkServiceConnectionState``, ?``provisioningState``) =
             {
@@ -3848,10 +4487,14 @@ module ``2021-01-01`` =
                 ``type`` = ``type``
                 ``properties`` = ``properties``
             }
+    type Status =
+        | Live
+        | Bootstrap
+        | Unavailable
     type GeoReplicationStats =
         {
             /// The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.
             ``lastSyncTime`` : string option
             /// A boolean flag which indicates whether or not account failover is supported for the account.
@@ -3935,10 +4578,27 @@ module ``2021-01-01`` =
                 ``microsoftEndpoints`` = ``microsoftEndpoints``
                 ``internetEndpoints`` = ``internetEndpoints``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type MinimumTlsVersion =
+        | TLS1_0
+        | TLS1_1
+        | TLS1_2
+    type RoutingChoice =
+        | MicrosoftRouting
+        | InternetRouting
     type RoutingPreference =
         {
             /// Routing Choice defines the kind of network routing opted by the user.
-            ``routingChoice`` : obj // RoutingChoice option
+            ``routingChoice`` : RoutingChoice option
             /// A boolean flag which indicates whether microsoft routing storage endpoints are to be published
             ``publishMicrosoftEndpoints`` : bool option
             /// A boolean flag which indicates whether internet routing storage endpoints are to be published
@@ -3950,6 +4610,9 @@ module ``2021-01-01`` =
                 ``publishMicrosoftEndpoints`` = ``publishMicrosoftEndpoints``
                 ``publishInternetEndpoints`` = ``publishInternetEndpoints``
             }
+    type LargeFileSharesState =
+        | Disabled
+        | Enabled
     type ActiveDirectoryProperties =
         {
             /// Specifies the primary domain that the AD DNS server is authoritative for.
@@ -3974,10 +4637,14 @@ module ``2021-01-01`` =
                 ``domainSid`` = ``domainSid``
                 ``azureStorageSid`` = ``azureStorageSid``
             }
+    type DirectoryServiceOptions =
+        | None
+        | AADDS
+        | AD
     type AzureFilesIdentityBasedAuthentication =
         {
             /// Indicates the directory service used.
-            ``directoryServiceOptions`` : obj // DirectoryServiceOptions
+            ``directoryServiceOptions`` : DirectoryServiceOptions
             /// Settings properties for Active Directory (AD).
             ``activeDirectoryProperties`` : ActiveDirectoryProperties option
         }
@@ -3986,6 +4653,12 @@ module ``2021-01-01`` =
                 ``directoryServiceOptions`` = ``directoryServiceOptions``
                 ``activeDirectoryProperties`` = ``activeDirectoryProperties``
             }
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -3995,12 +4668,18 @@ module ``2021-01-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
@@ -4019,10 +4698,15 @@ module ``2021-01-01`` =
                 ``tenantId`` = ``tenantId``
                 ``resourceId`` = ``resourceId``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the resource access rules
             ``resourceAccessRules`` : ResourceAccessRule array option
             /// Sets the virtual network rules
@@ -4030,7 +4714,7 @@ module ``2021-01-01`` =
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``resourceAccessRules``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -4070,6 +4754,12 @@ module ``2021-01-01`` =
                 ``currentVersionedKeyIdentifier`` = ``currentVersionedKeyIdentifier``
                 ``lastKeyRotationTimestamp`` = ``lastKeyRotationTimestamp``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
+    type KeyType =
+        | Service
+        | Account
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -4077,7 +4767,7 @@ module ``2021-01-01`` =
             /// Gets a rough estimate of the date/time when the encryption was last enabled by the user. Only returned when encryption is enabled. There might be some unencrypted blobs which were written after this time, as it is just a rough estimate.
             ``lastEnabledTime`` : string option
             /// Encryption key type to be used for the encryption service. 'Account' key type implies that an account-scoped encryption key will be used. 'Service' key type implies that a default service key is used.
-            ``keyType`` : obj // KeyType option
+            ``keyType`` : KeyType option
         }
         static member create(?``enabled``, ?``lastEnabledTime``, ?``keyType``) =
             {
@@ -4108,7 +4798,7 @@ module ``2021-01-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// A boolean indicating whether or not the service applies a secondary layer of encryption with platform managed keys for data at rest.
             ``requireInfrastructureEncryption`` : bool option
             /// Properties of key vault.
@@ -4145,7 +4835,7 @@ module ``2021-01-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Settings for Azure Files identity based authentication.
             ``azureFilesIdentityBasedAuthentication`` : AzureFilesIdentityBasedAuthentication option
             /// Allows https traffic only to storage service if sets to true. The default value is true since API version 2019-04-01.
@@ -4153,31 +4843,31 @@ module ``2021-01-01`` =
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled.
-            ``largeFileSharesState`` : obj // LargeFileSharesState option
+            ``largeFileSharesState`` : LargeFileSharesState option
             /// Routing preference defines the type of network, either microsoft or internet routing to be used to deliver the user data, the default option is microsoft routing
             ``routingPreference`` : RoutingPreference option
             /// Allow or disallow public access to all blobs or containers in the storage account. The default interpretation is true for this property.
             ``allowBlobPublicAccess`` : bool option
             /// Set the minimum TLS version to be permitted on requests to storage. The default interpretation is TLS 1.0 for this property.
-            ``minimumTlsVersion`` : obj // MinimumTlsVersion option
+            ``minimumTlsVersion`` : MinimumTlsVersion option
             /// Indicates whether the storage account permits requests to be authorized with the account access key via Shared Key. If false, then all requests, including shared access signatures, must be authorized with Azure Active Directory (Azure AD). The default value is null, which is equivalent to true.
             ``allowSharedKeyAccess`` : bool option
             /// NFS 3.0 protocol support enabled if set to true.
             ``isNfsV3Enabled`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -4232,6 +4922,11 @@ module ``2021-01-01`` =
                 ``principalId`` = ``principalId``
                 ``clientId`` = ``clientId``
             }
+    type Type =
+        | None
+        | SystemAssigned
+        | UserAssigned
+        | SystemAssigned,UserAssigned
     type Identity =
         {
             /// The principal ID of resource identity.
@@ -4239,7 +4934,7 @@ module ``2021-01-01`` =
             /// The tenant ID of resource.
             ``tenantId`` : string option
             /// The identity type.
-            ``type`` : obj // Type
+            ``type`` : Type
             /// Gets or sets a list of key value pairs that describe the set of User Assigned identities that will be used with this storage account. The key is the ARM resource identifier of the identity. Only 1 User Assigned identity is permitted here.
             ``userAssignedIdentities`` : Map<string, UserAssignedIdentity> option
         }
@@ -4259,10 +4954,28 @@ module ``2021-01-01`` =
             {
                 ``name`` = ``name``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+        | FileStorage
+        | BlockBlobStorage
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -4278,7 +4991,7 @@ module ``2021-01-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// The complex type of the extended location.
@@ -4327,10 +5040,14 @@ module ``2021-02-01`` =
                 ``timeToRestore`` = ``timeToRestore``
                 ``blobRanges`` = ``blobRanges``
             }
+    type Status =
+        | InProgress
+        | Complete
+        | Failed
     type BlobRestoreStatus =
         {
             /// The status of blob restore progress. Possible values are: - InProgress: Indicates that blob restore is ongoing. - Complete: Indicates that blob restore has been completed successfully. - Failed: Indicates that blob restore is failed.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// Failure reason when blob restore is failed.
             ``failureReason`` : string option
             /// Id for tracking blob restore request.
@@ -4345,10 +5062,19 @@ module ``2021-02-01`` =
                 ``restoreId`` = ``restoreId``
                 ``parameters`` = ``parameters``
             }
+    type ProvisioningState =
+        | Succeeded
+        | Creating
+        | Deleting
+        | Failed
+    type Status =
+        | Pending
+        | Approved
+        | Rejected
     type PrivateLinkServiceConnectionState =
         {
             /// Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// The reason for approval/rejection of the connection.
             ``description`` : string option
             /// A message indicating if changes on the service provider require any updates on the consumer.
@@ -4376,7 +5102,7 @@ module ``2021-02-01`` =
             /// A collection of information about the state of the connection between service consumer and provider.
             ``privateLinkServiceConnectionState`` : PrivateLinkServiceConnectionState option
             /// The provisioning state of the private endpoint connection resource.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
         }
         static member create(?``privateEndpoint``, ?``privateLinkServiceConnectionState``, ?``provisioningState``) =
             {
@@ -4402,10 +5128,14 @@ module ``2021-02-01`` =
                 ``type`` = ``type``
                 ``properties`` = ``properties``
             }
+    type Status =
+        | Live
+        | Bootstrap
+        | Unavailable
     type GeoReplicationStats =
         {
             /// The status of the secondary location. Possible values are: - Live: Indicates that the secondary location is active and operational. - Bootstrap: Indicates initial synchronization from the primary location to the secondary location is in progress.This typically occurs when replication is first enabled. - Unavailable: Indicates that the secondary location is temporarily unavailable.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// All primary writes preceding this UTC date/time value are guaranteed to be available for read operations. Primary writes following this point in time may or may not be available for reads. Element may be default value if value of LastSyncTime is not available, this can happen if secondary is offline or we are in bootstrap.
             ``lastSyncTime`` : string option
             /// A boolean flag which indicates whether or not account failover is supported for the account.
@@ -4499,10 +5229,27 @@ module ``2021-02-01`` =
                 ``key1`` = ``key1``
                 ``key2`` = ``key2``
             }
+    type StatusOfSecondary =
+        | available
+        | unavailable
+    type StatusOfPrimary =
+        | available
+        | unavailable
+    type ProvisioningState =
+        | Creating
+        | ResolvingDNS
+        | Succeeded
+    type MinimumTlsVersion =
+        | TLS1_0
+        | TLS1_1
+        | TLS1_2
+    type RoutingChoice =
+        | MicrosoftRouting
+        | InternetRouting
     type RoutingPreference =
         {
             /// Routing Choice defines the kind of network routing opted by the user.
-            ``routingChoice`` : obj // RoutingChoice option
+            ``routingChoice`` : RoutingChoice option
             /// A boolean flag which indicates whether microsoft routing storage endpoints are to be published
             ``publishMicrosoftEndpoints`` : bool option
             /// A boolean flag which indicates whether internet routing storage endpoints are to be published
@@ -4514,6 +5261,9 @@ module ``2021-02-01`` =
                 ``publishMicrosoftEndpoints`` = ``publishMicrosoftEndpoints``
                 ``publishInternetEndpoints`` = ``publishInternetEndpoints``
             }
+    type LargeFileSharesState =
+        | Disabled
+        | Enabled
     type ActiveDirectoryProperties =
         {
             /// Specifies the primary domain that the AD DNS server is authoritative for.
@@ -4538,10 +5288,14 @@ module ``2021-02-01`` =
                 ``domainSid`` = ``domainSid``
                 ``azureStorageSid`` = ``azureStorageSid``
             }
+    type DirectoryServiceOptions =
+        | None
+        | AADDS
+        | AD
     type AzureFilesIdentityBasedAuthentication =
         {
             /// Indicates the directory service used.
-            ``directoryServiceOptions`` : obj // DirectoryServiceOptions
+            ``directoryServiceOptions`` : DirectoryServiceOptions
             /// Settings properties for Active Directory (AD).
             ``activeDirectoryProperties`` : ActiveDirectoryProperties option
         }
@@ -4550,6 +5304,12 @@ module ``2021-02-01`` =
                 ``directoryServiceOptions`` = ``directoryServiceOptions``
                 ``activeDirectoryProperties`` = ``activeDirectoryProperties``
             }
+    type AccessTier =
+        | Hot
+        | Cool
+    type DefaultAction =
+        | Allow
+        | Deny
     type IPRule =
         {
             /// Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.
@@ -4559,12 +5319,18 @@ module ``2021-02-01`` =
             {
                 ``value`` = ``value``
             }
+    type State =
+        | provisioning
+        | deprovisioning
+        | succeeded
+        | failed
+        | networkSourceDeleted
     type VirtualNetworkRule =
         {
             /// Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.
             ``id`` : string
             /// Gets the state of virtual network rule.
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``id``, ?``state``) =
             {
@@ -4583,10 +5349,15 @@ module ``2021-02-01`` =
                 ``tenantId`` = ``tenantId``
                 ``resourceId`` = ``resourceId``
             }
+    type Bypass =
+        | None
+        | Logging
+        | Metrics
+        | AzureServices
     type NetworkRuleSet =
         {
             /// Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics.
-            ``bypass`` : obj // Bypass option
+            ``bypass`` : Bypass option
             /// Sets the resource access rules
             ``resourceAccessRules`` : ResourceAccessRule array option
             /// Sets the virtual network rules
@@ -4594,7 +5365,7 @@ module ``2021-02-01`` =
             /// Sets the IP ACL rules
             ``ipRules`` : IPRule array option
             /// Specifies the default action of allow or deny when no other rules match.
-            ``defaultAction`` : obj // DefaultAction
+            ``defaultAction`` : DefaultAction
         }
         static member create(``defaultAction``, ?``bypass``, ?``resourceAccessRules``, ?``virtualNetworkRules``, ?``ipRules``) =
             {
@@ -4634,6 +5405,12 @@ module ``2021-02-01`` =
                 ``currentVersionedKeyIdentifier`` = ``currentVersionedKeyIdentifier``
                 ``lastKeyRotationTimestamp`` = ``lastKeyRotationTimestamp``
             }
+    type KeySource =
+        | Microsoft.Storage
+        | Microsoft.Keyvault
+    type KeyType =
+        | Service
+        | Account
     type EncryptionService =
         {
             /// A boolean indicating whether or not the service encrypts the data as it is stored.
@@ -4641,7 +5418,7 @@ module ``2021-02-01`` =
             /// Gets a rough estimate of the date/time when the encryption was last enabled by the user. Only returned when encryption is enabled. There might be some unencrypted blobs which were written after this time, as it is just a rough estimate.
             ``lastEnabledTime`` : string option
             /// Encryption key type to be used for the encryption service. 'Account' key type implies that an account-scoped encryption key will be used. 'Service' key type implies that a default service key is used.
-            ``keyType`` : obj // KeyType option
+            ``keyType`` : KeyType option
         }
         static member create(?``enabled``, ?``lastEnabledTime``, ?``keyType``) =
             {
@@ -4672,7 +5449,7 @@ module ``2021-02-01`` =
             /// A list of services that support encryption.
             ``services`` : EncryptionServices option
             /// The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Storage, Microsoft.Keyvault.
-            ``keySource`` : obj // KeySource
+            ``keySource`` : KeySource
             /// A boolean indicating whether or not the service applies a secondary layer of encryption with platform managed keys for data at rest.
             ``requireInfrastructureEncryption`` : bool option
             /// Properties of key vault.
@@ -4734,7 +5511,7 @@ module ``2021-02-01`` =
             /// Network rule set
             ``networkAcls`` : NetworkRuleSet option
             /// Required for storage accounts where kind = BlobStorage. The access tier used for billing.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Settings for Azure Files identity based authentication.
             ``azureFilesIdentityBasedAuthentication`` : AzureFilesIdentityBasedAuthentication option
             /// Allows https traffic only to storage service if sets to true. The default value is true since API version 2019-04-01.
@@ -4742,31 +5519,31 @@ module ``2021-02-01`` =
             /// Account HierarchicalNamespace enabled if sets to true.
             ``isHnsEnabled`` : bool option
             /// Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled.
-            ``largeFileSharesState`` : obj // LargeFileSharesState option
+            ``largeFileSharesState`` : LargeFileSharesState option
             /// Routing preference defines the type of network, either microsoft or internet routing to be used to deliver the user data, the default option is microsoft routing
             ``routingPreference`` : RoutingPreference option
             /// Allow or disallow public access to all blobs or containers in the storage account. The default interpretation is true for this property.
             ``allowBlobPublicAccess`` : bool option
             /// Set the minimum TLS version to be permitted on requests to storage. The default interpretation is TLS 1.0 for this property.
-            ``minimumTlsVersion`` : obj // MinimumTlsVersion option
+            ``minimumTlsVersion`` : MinimumTlsVersion option
             /// Indicates whether the storage account permits requests to be authorized with the account access key via Shared Key. If false, then all requests, including shared access signatures, must be authorized with Azure Active Directory (Azure AD). The default value is null, which is equivalent to true.
             ``allowSharedKeyAccess`` : bool option
             /// NFS 3.0 protocol support enabled if set to true.
             ``isNfsV3Enabled`` : bool option
             /// Gets the status of the storage account at the time the operation was called.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
             /// The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
             ``primaryEndpoints`` : Endpoints option
             /// Gets the location of the primary data center for the storage account.
             ``primaryLocation`` : string option
             /// Gets the status indicating whether the primary location of the storage account is available or unavailable.
-            ``statusOfPrimary`` : obj // StatusOfPrimary option
+            ``statusOfPrimary`` : StatusOfPrimary option
             /// Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``lastGeoFailoverTime`` : string option
             /// Gets the location of the geo-replicated secondary for the storage account. Only available if the accountType is Standard_GRS or Standard_RAGRS.
             ``secondaryLocation`` : string option
             /// Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the SKU name is Standard_GRS or Standard_RAGRS.
-            ``statusOfSecondary`` : obj // StatusOfSecondary option
+            ``statusOfSecondary`` : StatusOfSecondary option
             /// Gets the creation date and time of the storage account in UTC.
             ``creationTime`` : string option
             /// Storage account keys creation time.
@@ -4826,6 +5603,11 @@ module ``2021-02-01`` =
                 ``principalId`` = ``principalId``
                 ``clientId`` = ``clientId``
             }
+    type Type =
+        | None
+        | SystemAssigned
+        | UserAssigned
+        | SystemAssigned,UserAssigned
     type Identity =
         {
             /// The principal ID of resource identity.
@@ -4833,7 +5615,7 @@ module ``2021-02-01`` =
             /// The tenant ID of resource.
             ``tenantId`` : string option
             /// The identity type.
-            ``type`` : obj // Type
+            ``type`` : Type
             /// Gets or sets a list of key value pairs that describe the set of User Assigned identities that will be used with this storage account. The key is the ARM resource identifier of the identity. Only 1 User Assigned identity is permitted here.
             ``userAssignedIdentities`` : Map<string, UserAssignedIdentity> option
         }
@@ -4853,10 +5635,28 @@ module ``2021-02-01`` =
             {
                 ``name`` = ``name``
             }
+    type Kind =
+        | Storage
+        | StorageV2
+        | BlobStorage
+        | FileStorage
+        | BlockBlobStorage
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -4872,7 +5672,7 @@ module ``2021-02-01`` =
             /// The SKU of the storage account.
             ``sku`` : Sku
             /// Required. Indicates the type of storage account.
-            ``kind`` : obj // Kind
+            ``kind`` : Kind
             /// Required. Gets or sets the location of the resource. This will be one of the supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). The geo region of a resource cannot be changed once it is created, but if an identical geo region is specified on update, the request will succeed.
             ``location`` : string
             /// The complex type of the extended location.
@@ -4916,7 +5716,7 @@ module ``2018-07-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -4989,7 +5789,7 @@ module ``2018-11-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -5071,7 +5871,7 @@ module ``2019-04-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -5133,10 +5933,22 @@ module ``2019-04-01`` =
                 ``properties`` = ``properties``
             }
 module ``2019-06-01`` =
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -5205,7 +6017,7 @@ module ``2019-06-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -5282,10 +6094,22 @@ module ``2019-06-01`` =
                 ``sku`` = ``sku``
             }
 module ``2020-08-01-preview`` =
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -5354,7 +6178,7 @@ module ``2020-08-01-preview`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -5431,10 +6255,22 @@ module ``2020-08-01-preview`` =
                 ``sku`` = ``sku``
             }
 module ``2021-01-01`` =
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -5503,7 +6339,7 @@ module ``2021-01-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -5580,10 +6416,22 @@ module ``2021-01-01`` =
                 ``sku`` = ``sku``
             }
 module ``2021-02-01`` =
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -5652,7 +6500,7 @@ module ``2021-02-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -5764,10 +6612,14 @@ module ``2018-02-01`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -5788,12 +6640,15 @@ module ``2018-02-01`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -5815,18 +6670,34 @@ module ``2018-02-01`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -5903,10 +6774,14 @@ module ``2018-03-01-preview`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -5927,12 +6802,15 @@ module ``2018-03-01-preview`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -5954,18 +6832,34 @@ module ``2018-03-01-preview`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -6042,10 +6936,14 @@ module ``2018-07-01`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -6066,12 +6964,15 @@ module ``2018-07-01`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -6093,18 +6994,34 @@ module ``2018-07-01`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -6181,10 +7098,14 @@ module ``2018-11-01`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -6205,12 +7126,15 @@ module ``2018-11-01`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -6232,18 +7156,34 @@ module ``2018-11-01`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -6320,10 +7260,14 @@ module ``2019-04-01`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -6344,12 +7288,15 @@ module ``2019-04-01`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -6371,18 +7318,34 @@ module ``2019-04-01`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -6459,10 +7422,14 @@ module ``2019-06-01`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -6483,12 +7450,15 @@ module ``2019-06-01`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
             /// This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
             ``allowProtectedAppendWrites`` : bool option
         }
@@ -6513,6 +7483,22 @@ module ``2019-06-01`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// The version of the deleted blob container.
@@ -6528,15 +7514,15 @@ module ``2019-06-01`` =
             /// Block override of encryption scope from the container default.
             ``denyEncryptionScopeOverride`` : bool option
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -6619,10 +7605,14 @@ module ``2020-08-01-preview`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -6643,12 +7633,15 @@ module ``2020-08-01-preview`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
             /// This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
             ``allowProtectedAppendWrites`` : bool option
         }
@@ -6673,6 +7666,22 @@ module ``2020-08-01-preview`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// The version of the deleted blob container.
@@ -6688,15 +7697,15 @@ module ``2020-08-01-preview`` =
             /// Block override of encryption scope from the container default.
             ``denyEncryptionScopeOverride`` : bool option
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -6779,10 +7788,14 @@ module ``2021-01-01`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -6803,12 +7816,15 @@ module ``2021-01-01`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
             /// This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
             ``allowProtectedAppendWrites`` : bool option
         }
@@ -6833,6 +7849,22 @@ module ``2021-01-01`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// The version of the deleted blob container.
@@ -6848,15 +7880,15 @@ module ``2021-01-01`` =
             /// Block override of encryption scope from the container default.
             ``denyEncryptionScopeOverride`` : bool option
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -6939,10 +7971,14 @@ module ``2021-02-01`` =
                 ``hasLegalHold`` = ``hasLegalHold``
                 ``tags`` = ``tags``
             }
+    type Update =
+        | put
+        | lock
+        | extend
     type UpdateHistoryProperty =
         {
             /// The ImmutabilityPolicy update type of a blob container,
-            ``update`` : obj // Update option
+            ``update`` : Update option
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// Returns the date and time the ImmutabilityPolicy was updated.
@@ -6963,12 +7999,15 @@ module ``2021-02-01`` =
                 ``tenantId`` = ``tenantId``
                 ``upn`` = ``upn``
             }
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
             /// This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
             ``allowProtectedAppendWrites`` : bool option
         }
@@ -6993,6 +8032,22 @@ module ``2021-02-01`` =
                 ``etag`` = ``etag``
                 ``updateHistory`` = ``updateHistory``
             }
+    type LeaseDuration =
+        | Infinite
+        | Fixed
+    type LeaseState =
+        | Available
+        | Leased
+        | Expired
+        | Breaking
+        | Broken
+    type LeaseStatus =
+        | Locked
+        | Unlocked
+    type PublicAccess =
+        | Container
+        | Blob
+        | None
     type ContainerProperties =
         {
             /// The version of the deleted blob container.
@@ -7008,15 +8063,15 @@ module ``2021-02-01`` =
             /// Block override of encryption scope from the container default.
             ``denyEncryptionScopeOverride`` : bool option
             /// Specifies whether data in the container may be accessed publicly and the level of access.
-            ``publicAccess`` : obj // PublicAccess option
+            ``publicAccess`` : PublicAccess option
             /// Returns the date and time the container was last modified.
             ``lastModifiedTime`` : string option
             /// The lease status of the container.
-            ``leaseStatus`` : obj // LeaseStatus option
+            ``leaseStatus`` : LeaseStatus option
             /// Lease state of the container.
-            ``leaseState`` : obj // LeaseState option
+            ``leaseState`` : LeaseState option
             /// Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.
-            ``leaseDuration`` : obj // LeaseDuration option
+            ``leaseDuration`` : LeaseDuration option
             /// A name-value pair to associate with the container as metadata.
             ``metadata`` : Map<string, string> option
             /// The properties of an ImmutabilityPolicy of a blob container.
@@ -7068,12 +8123,15 @@ module ``2021-02-01`` =
 namespace Microsoft.Storage.StorageAccounts.BlobServices.Containers.ImmutabilityPolicies
 
 module ``2018-02-01`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -7099,12 +8157,15 @@ module ``2018-02-01`` =
                 ``properties`` = ``properties``
             }
 module ``2018-03-01-preview`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -7130,12 +8191,15 @@ module ``2018-03-01-preview`` =
                 ``properties`` = ``properties``
             }
 module ``2018-07-01`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -7161,12 +8225,15 @@ module ``2018-07-01`` =
                 ``properties`` = ``properties``
             }
 module ``2018-11-01`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -7192,12 +8259,15 @@ module ``2018-11-01`` =
                 ``properties`` = ``properties``
             }
 module ``2019-04-01`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
         }
         static member create(``immutabilityPeriodSinceCreationInDays``, ?``state``) =
             {
@@ -7223,12 +8293,15 @@ module ``2019-04-01`` =
                 ``properties`` = ``properties``
             }
 module ``2019-06-01`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
             /// This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
             ``allowProtectedAppendWrites`` : bool option
         }
@@ -7257,12 +8330,15 @@ module ``2019-06-01`` =
                 ``properties`` = ``properties``
             }
 module ``2020-08-01-preview`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
             /// This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
             ``allowProtectedAppendWrites`` : bool option
         }
@@ -7291,12 +8367,15 @@ module ``2020-08-01-preview`` =
                 ``properties`` = ``properties``
             }
 module ``2021-01-01`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
             /// This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
             ``allowProtectedAppendWrites`` : bool option
         }
@@ -7325,12 +8404,15 @@ module ``2021-01-01`` =
                 ``properties`` = ``properties``
             }
 module ``2021-02-01`` =
+    type State =
+        | Locked
+        | Unlocked
     type ImmutabilityPolicyProperty =
         {
             /// The immutability period for the blobs in the container since the policy creation, in days.
             ``immutabilityPeriodSinceCreationInDays`` : int option
             /// The ImmutabilityPolicy state of a blob container,
-            ``state`` : obj // State option
+            ``state`` : State option
             /// This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
             ``allowProtectedAppendWrites`` : bool option
         }
@@ -7370,12 +8452,18 @@ module ``2019-06-01`` =
             {
                 ``keyUri`` = ``keyUri``
             }
+    type State =
+        | Enabled
+        | Disabled
+    type Source =
+        | Microsoft.Storage
+        | Microsoft.KeyVault
     type EncryptionScopeProperties =
         {
             /// The provider for the encryption scope. Possible values (case-insensitive):  Microsoft.Storage, Microsoft.KeyVault.
-            ``source`` : obj // Source option
+            ``source`` : Source option
             /// The state of the encryption scope. Possible values (case-insensitive):  Enabled, Disabled.
-            ``state`` : obj // State option
+            ``state`` : State option
             /// Gets the creation date and time of the encryption scope in UTC.
             ``creationTime`` : string option
             /// Gets the last modification date and time of the encryption scope in UTC.
@@ -7416,12 +8504,18 @@ module ``2020-08-01-preview`` =
             {
                 ``keyUri`` = ``keyUri``
             }
+    type State =
+        | Enabled
+        | Disabled
+    type Source =
+        | Microsoft.Storage
+        | Microsoft.KeyVault
     type EncryptionScopeProperties =
         {
             /// The provider for the encryption scope. Possible values (case-insensitive):  Microsoft.Storage, Microsoft.KeyVault.
-            ``source`` : obj // Source option
+            ``source`` : Source option
             /// The state of the encryption scope. Possible values (case-insensitive):  Enabled, Disabled.
-            ``state`` : obj // State option
+            ``state`` : State option
             /// Gets the creation date and time of the encryption scope in UTC.
             ``creationTime`` : string option
             /// Gets the last modification date and time of the encryption scope in UTC.
@@ -7468,12 +8562,18 @@ module ``2021-01-01`` =
                 ``currentVersionedKeyIdentifier`` = ``currentVersionedKeyIdentifier``
                 ``lastKeyRotationTimestamp`` = ``lastKeyRotationTimestamp``
             }
+    type State =
+        | Enabled
+        | Disabled
+    type Source =
+        | Microsoft.Storage
+        | Microsoft.KeyVault
     type EncryptionScopeProperties =
         {
             /// The provider for the encryption scope. Possible values (case-insensitive):  Microsoft.Storage, Microsoft.KeyVault.
-            ``source`` : obj // Source option
+            ``source`` : Source option
             /// The state of the encryption scope. Possible values (case-insensitive):  Enabled, Disabled.
-            ``state`` : obj // State option
+            ``state`` : State option
             /// Gets the creation date and time of the encryption scope in UTC.
             ``creationTime`` : string option
             /// Gets the last modification date and time of the encryption scope in UTC.
@@ -7523,12 +8623,18 @@ module ``2021-02-01`` =
                 ``currentVersionedKeyIdentifier`` = ``currentVersionedKeyIdentifier``
                 ``lastKeyRotationTimestamp`` = ``lastKeyRotationTimestamp``
             }
+    type State =
+        | Enabled
+        | Disabled
+    type Source =
+        | Microsoft.Storage
+        | Microsoft.KeyVault
     type EncryptionScopeProperties =
         {
             /// The provider for the encryption scope. Possible values (case-insensitive):  Microsoft.Storage, Microsoft.KeyVault.
-            ``source`` : obj // Source option
+            ``source`` : Source option
             /// The state of the encryption scope. Possible values (case-insensitive):  Enabled, Disabled.
-            ``state`` : obj // State option
+            ``state`` : State option
             /// Gets the creation date and time of the encryption scope in UTC.
             ``creationTime`` : string option
             /// Gets the last modification date and time of the encryption scope in UTC.
@@ -7570,7 +8676,7 @@ module ``2019-04-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -7620,10 +8726,22 @@ module ``2019-04-01`` =
                 ``properties`` = ``properties``
             }
 module ``2019-06-01`` =
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -7647,7 +8765,7 @@ module ``2019-06-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -7703,10 +8821,22 @@ module ``2019-06-01`` =
                 ``sku`` = ``sku``
             }
 module ``2020-08-01-preview`` =
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -7757,7 +8887,7 @@ module ``2020-08-01-preview`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -7816,10 +8946,22 @@ module ``2020-08-01-preview`` =
                 ``sku`` = ``sku``
             }
 module ``2021-01-01`` =
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -7882,7 +9024,7 @@ module ``2021-01-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -7941,10 +9083,22 @@ module ``2021-01-01`` =
                 ``sku`` = ``sku``
             }
 module ``2021-02-01`` =
+    type Tier =
+        | Standard
+        | Premium
+    type Name =
+        | Standard_LRS
+        | Standard_GRS
+        | Standard_RAGRS
+        | Standard_ZRS
+        | Premium_LRS
+        | Premium_ZRS
+        | Standard_GZRS
+        | Standard_RAGZRS
     type Sku =
         {
-            ``name`` : obj // Name
-            ``tier`` : obj // Tier option
+            ``name`` : Name
+            ``tier`` : Tier option
         }
         static member create(``name``, ?``tier``) =
             {
@@ -8007,7 +9161,7 @@ module ``2021-02-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -8102,6 +9256,18 @@ module ``2019-04-01`` =
                 ``properties`` = ``properties``
             }
 module ``2019-06-01`` =
+    type AccessTier =
+        | TransactionOptimized
+        | Hot
+        | Cool
+        | Premium
+    type RootSquash =
+        | NoRootSquash
+        | RootSquash
+        | AllSquash
+    type EnabledProtocols =
+        | SMB
+        | NFS
     type FileShareProperties =
         {
             /// Returns the date and time the share was last modified.
@@ -8111,9 +9277,9 @@ module ``2019-06-01`` =
             /// The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.
             ``shareQuota`` : int option
             /// The authentication protocol that is used for the file share. Can only be specified when creating a share.
-            ``enabledProtocols`` : obj // EnabledProtocols option
+            ``enabledProtocols`` : EnabledProtocols option
             /// The property is for NFS share only. The default is NoRootSquash.
-            ``rootSquash`` : obj // RootSquash option
+            ``rootSquash`` : RootSquash option
             /// The version of the share.
             ``version`` : string option
             /// Indicates whether the share was deleted.
@@ -8123,7 +9289,7 @@ module ``2019-06-01`` =
             /// Remaining retention days for share that was soft deleted.
             ``remainingRetentionDays`` : int option
             /// Access tier for specific share. GpV2 account can choose between TransactionOptimized (default), Hot, and Cool. FileStorage account can choose Premium.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Indicates the last modification time for share access tier.
             ``accessTierChangeTime`` : string option
             /// Indicates if there is a pending transition for access tier.
@@ -8166,6 +9332,18 @@ module ``2019-06-01`` =
                 ``properties`` = ``properties``
             }
 module ``2020-08-01-preview`` =
+    type AccessTier =
+        | TransactionOptimized
+        | Hot
+        | Cool
+        | Premium
+    type RootSquash =
+        | NoRootSquash
+        | RootSquash
+        | AllSquash
+    type EnabledProtocols =
+        | SMB
+        | NFS
     type FileShareProperties =
         {
             /// Returns the date and time the share was last modified.
@@ -8175,9 +9353,9 @@ module ``2020-08-01-preview`` =
             /// The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.
             ``shareQuota`` : int option
             /// The authentication protocol that is used for the file share. Can only be specified when creating a share.
-            ``enabledProtocols`` : obj // EnabledProtocols option
+            ``enabledProtocols`` : EnabledProtocols option
             /// The property is for NFS share only. The default is NoRootSquash.
-            ``rootSquash`` : obj // RootSquash option
+            ``rootSquash`` : RootSquash option
             /// The version of the share.
             ``version`` : string option
             /// Indicates whether the share was deleted.
@@ -8187,7 +9365,7 @@ module ``2020-08-01-preview`` =
             /// Remaining retention days for share that was soft deleted.
             ``remainingRetentionDays`` : int option
             /// Access tier for specific share. GpV2 account can choose between TransactionOptimized (default), Hot, and Cool. FileStorage account can choose Premium.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Indicates the last modification time for share access tier.
             ``accessTierChangeTime`` : string option
             /// Indicates if there is a pending transition for access tier.
@@ -8233,6 +9411,18 @@ module ``2020-08-01-preview`` =
                 ``properties`` = ``properties``
             }
 module ``2021-01-01`` =
+    type AccessTier =
+        | TransactionOptimized
+        | Hot
+        | Cool
+        | Premium
+    type RootSquash =
+        | NoRootSquash
+        | RootSquash
+        | AllSquash
+    type EnabledProtocols =
+        | SMB
+        | NFS
     type FileShareProperties =
         {
             /// Returns the date and time the share was last modified.
@@ -8242,9 +9432,9 @@ module ``2021-01-01`` =
             /// The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.
             ``shareQuota`` : int option
             /// The authentication protocol that is used for the file share. Can only be specified when creating a share.
-            ``enabledProtocols`` : obj // EnabledProtocols option
+            ``enabledProtocols`` : EnabledProtocols option
             /// The property is for NFS share only. The default is NoRootSquash.
-            ``rootSquash`` : obj // RootSquash option
+            ``rootSquash`` : RootSquash option
             /// The version of the share.
             ``version`` : string option
             /// Indicates whether the share was deleted.
@@ -8254,7 +9444,7 @@ module ``2021-01-01`` =
             /// Remaining retention days for share that was soft deleted.
             ``remainingRetentionDays`` : int option
             /// Access tier for specific share. GpV2 account can choose between TransactionOptimized (default), Hot, and Cool. FileStorage account can choose Premium.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Indicates the last modification time for share access tier.
             ``accessTierChangeTime`` : string option
             /// Indicates if there is a pending transition for access tier.
@@ -8300,6 +9490,18 @@ module ``2021-01-01`` =
                 ``properties`` = ``properties``
             }
 module ``2021-02-01`` =
+    type AccessTier =
+        | TransactionOptimized
+        | Hot
+        | Cool
+        | Premium
+    type RootSquash =
+        | NoRootSquash
+        | RootSquash
+        | AllSquash
+    type EnabledProtocols =
+        | SMB
+        | NFS
     type FileShareProperties =
         {
             /// Returns the date and time the share was last modified.
@@ -8309,9 +9511,9 @@ module ``2021-02-01`` =
             /// The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.
             ``shareQuota`` : int option
             /// The authentication protocol that is used for the file share. Can only be specified when creating a share.
-            ``enabledProtocols`` : obj // EnabledProtocols option
+            ``enabledProtocols`` : EnabledProtocols option
             /// The property is for NFS share only. The default is NoRootSquash.
-            ``rootSquash`` : obj // RootSquash option
+            ``rootSquash`` : RootSquash option
             /// The version of the share.
             ``version`` : string option
             /// Indicates whether the share was deleted.
@@ -8321,7 +9523,7 @@ module ``2021-02-01`` =
             /// Remaining retention days for share that was soft deleted.
             ``remainingRetentionDays`` : int option
             /// Access tier for specific share. GpV2 account can choose between TransactionOptimized (default), Hot, and Cool. FileStorage account can choose Premium.
-            ``accessTier`` : obj // AccessTier option
+            ``accessTier`` : AccessTier option
             /// Indicates the last modification time for share access tier.
             ``accessTierChangeTime`` : string option
             /// Indicates if there is a pending transition for access tier.
@@ -8369,18 +9571,28 @@ module ``2021-02-01`` =
 namespace Microsoft.Storage.StorageAccounts.InventoryPolicies
 
 module ``2019-06-01`` =
+    type LastModifiedByType =
+        | User
+        | Application
+        | ManagedIdentity
+        | Key
+    type CreatedByType =
+        | User
+        | Application
+        | ManagedIdentity
+        | Key
     type systemData =
         {
             /// The identity that created the resource.
             ``createdBy`` : string option
             /// The type of identity that created the resource.
-            ``createdByType`` : obj // CreatedByType option
+            ``createdByType`` : CreatedByType option
             /// The timestamp of resource creation (UTC).
             ``createdAt`` : string option
             /// The identity that last modified the resource.
             ``lastModifiedBy`` : string option
             /// The type of identity that last modified the resource.
-            ``lastModifiedByType`` : obj // LastModifiedByType option
+            ``lastModifiedByType`` : LastModifiedByType option
             /// The timestamp of resource last modification (UTC)
             ``lastModifiedAt`` : string option
         }
@@ -8484,18 +9696,28 @@ module ``2019-06-01`` =
                 ``systemData`` = ``systemData``
             }
 module ``2020-08-01-preview`` =
+    type LastModifiedByType =
+        | User
+        | Application
+        | ManagedIdentity
+        | Key
+    type CreatedByType =
+        | User
+        | Application
+        | ManagedIdentity
+        | Key
     type systemData =
         {
             /// The identity that created the resource.
             ``createdBy`` : string option
             /// The type of identity that created the resource.
-            ``createdByType`` : obj // CreatedByType option
+            ``createdByType`` : CreatedByType option
             /// The timestamp of resource creation (UTC).
             ``createdAt`` : string option
             /// The identity that last modified the resource.
             ``lastModifiedBy`` : string option
             /// The type of identity that last modified the resource.
-            ``lastModifiedByType`` : obj // LastModifiedByType option
+            ``lastModifiedByType`` : LastModifiedByType option
             /// The timestamp of resource last modification (UTC)
             ``lastModifiedAt`` : string option
         }
@@ -8599,18 +9821,28 @@ module ``2020-08-01-preview`` =
                 ``systemData`` = ``systemData``
             }
 module ``2021-01-01`` =
+    type LastModifiedByType =
+        | User
+        | Application
+        | ManagedIdentity
+        | Key
+    type CreatedByType =
+        | User
+        | Application
+        | ManagedIdentity
+        | Key
     type systemData =
         {
             /// The identity that created the resource.
             ``createdBy`` : string option
             /// The type of identity that created the resource.
-            ``createdByType`` : obj // CreatedByType option
+            ``createdByType`` : CreatedByType option
             /// The timestamp of resource creation (UTC).
             ``createdAt`` : string option
             /// The identity that last modified the resource.
             ``lastModifiedBy`` : string option
             /// The type of identity that last modified the resource.
-            ``lastModifiedByType`` : obj // LastModifiedByType option
+            ``lastModifiedByType`` : LastModifiedByType option
             /// The timestamp of resource last modification (UTC)
             ``lastModifiedAt`` : string option
         }
@@ -8714,18 +9946,28 @@ module ``2021-01-01`` =
                 ``systemData`` = ``systemData``
             }
 module ``2021-02-01`` =
+    type LastModifiedByType =
+        | User
+        | Application
+        | ManagedIdentity
+        | Key
+    type CreatedByType =
+        | User
+        | Application
+        | ManagedIdentity
+        | Key
     type systemData =
         {
             /// The identity that created the resource.
             ``createdBy`` : string option
             /// The type of identity that created the resource.
-            ``createdByType`` : obj // CreatedByType option
+            ``createdByType`` : CreatedByType option
             /// The timestamp of resource creation (UTC).
             ``createdAt`` : string option
             /// The identity that last modified the resource.
             ``lastModifiedBy`` : string option
             /// The type of identity that last modified the resource.
-            ``lastModifiedByType`` : obj // LastModifiedByType option
+            ``lastModifiedByType`` : LastModifiedByType option
             /// The timestamp of resource last modification (UTC)
             ``lastModifiedAt`` : string option
         }
@@ -10121,10 +11363,19 @@ module ``2021-02-01`` =
 namespace Microsoft.Storage.StorageAccounts.PrivateEndpointConnections
 
 module ``2019-06-01`` =
+    type ProvisioningState =
+        | Succeeded
+        | Creating
+        | Deleting
+        | Failed
+    type Status =
+        | Pending
+        | Approved
+        | Rejected
     type PrivateLinkServiceConnectionState =
         {
             /// Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// The reason for approval/rejection of the connection.
             ``description`` : string option
             /// A message indicating if changes on the service provider require any updates on the consumer.
@@ -10152,7 +11403,7 @@ module ``2019-06-01`` =
             /// A collection of information about the state of the connection between service consumer and provider.
             ``privateLinkServiceConnectionState`` : PrivateLinkServiceConnectionState option
             /// The provisioning state of the private endpoint connection resource.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
         }
         static member create(?``privateEndpoint``, ?``privateLinkServiceConnectionState``, ?``provisioningState``) =
             {
@@ -10176,10 +11427,19 @@ module ``2019-06-01`` =
                 ``properties`` = ``properties``
             }
 module ``2020-08-01-preview`` =
+    type ProvisioningState =
+        | Succeeded
+        | Creating
+        | Deleting
+        | Failed
+    type Status =
+        | Pending
+        | Approved
+        | Rejected
     type PrivateLinkServiceConnectionState =
         {
             /// Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// The reason for approval/rejection of the connection.
             ``description`` : string option
             /// A message indicating if changes on the service provider require any updates on the consumer.
@@ -10207,7 +11467,7 @@ module ``2020-08-01-preview`` =
             /// A collection of information about the state of the connection between service consumer and provider.
             ``privateLinkServiceConnectionState`` : PrivateLinkServiceConnectionState option
             /// The provisioning state of the private endpoint connection resource.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
         }
         static member create(?``privateEndpoint``, ?``privateLinkServiceConnectionState``, ?``provisioningState``) =
             {
@@ -10231,10 +11491,19 @@ module ``2020-08-01-preview`` =
                 ``properties`` = ``properties``
             }
 module ``2021-01-01`` =
+    type ProvisioningState =
+        | Succeeded
+        | Creating
+        | Deleting
+        | Failed
+    type Status =
+        | Pending
+        | Approved
+        | Rejected
     type PrivateLinkServiceConnectionState =
         {
             /// Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// The reason for approval/rejection of the connection.
             ``description`` : string option
             /// A message indicating if changes on the service provider require any updates on the consumer.
@@ -10262,7 +11531,7 @@ module ``2021-01-01`` =
             /// A collection of information about the state of the connection between service consumer and provider.
             ``privateLinkServiceConnectionState`` : PrivateLinkServiceConnectionState option
             /// The provisioning state of the private endpoint connection resource.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
         }
         static member create(?``privateEndpoint``, ?``privateLinkServiceConnectionState``, ?``provisioningState``) =
             {
@@ -10286,10 +11555,19 @@ module ``2021-01-01`` =
                 ``properties`` = ``properties``
             }
 module ``2021-02-01`` =
+    type ProvisioningState =
+        | Succeeded
+        | Creating
+        | Deleting
+        | Failed
+    type Status =
+        | Pending
+        | Approved
+        | Rejected
     type PrivateLinkServiceConnectionState =
         {
             /// Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-            ``status`` : obj // Status option
+            ``status`` : Status option
             /// The reason for approval/rejection of the connection.
             ``description`` : string option
             /// A message indicating if changes on the service provider require any updates on the consumer.
@@ -10317,7 +11595,7 @@ module ``2021-02-01`` =
             /// A collection of information about the state of the connection between service consumer and provider.
             ``privateLinkServiceConnectionState`` : PrivateLinkServiceConnectionState option
             /// The provisioning state of the private endpoint connection resource.
-            ``provisioningState`` : obj // ProvisioningState option
+            ``provisioningState`` : ProvisioningState option
         }
         static member create(?``privateEndpoint``, ?``privateLinkServiceConnectionState``, ?``provisioningState``) =
             {
@@ -10348,7 +11626,7 @@ module ``2019-06-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -10403,7 +11681,7 @@ module ``2020-08-01-preview`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -10458,7 +11736,7 @@ module ``2021-01-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -10513,7 +11791,7 @@ module ``2021-02-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -10680,7 +11958,7 @@ module ``2019-06-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -10735,7 +12013,7 @@ module ``2020-08-01-preview`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -10790,7 +12068,7 @@ module ``2021-01-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.
@@ -10845,7 +12123,7 @@ module ``2021-02-01`` =
             /// Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or "*" to allow all domains
             ``allowedOrigins`` : string array
             /// Required if CorsRule element is present. A list of HTTP methods that are allowed to be executed by the origin.
-            ``allowedMethods`` : obj // AllowedMethods array
+            ``allowedMethods`` : AllowedMethods array
             /// Required if CorsRule element is present. The number of seconds that the client/browser should cache a preflight response.
             ``maxAgeInSeconds`` : int
             /// Required if CorsRule element is present. A list of response headers to expose to CORS clients.

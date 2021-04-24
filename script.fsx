@@ -18,81 +18,111 @@ open System.Collections.Generic
         else s
     let indent n = String.replicate n "    "
 
-type ResourceFieldType = { TypeName : string; Optional : bool; IsCollection : bool }
+let capitalise (s:string) = (Char.ToUpper(s.[0]).ToString()) + s.[1..]
+
+type FieldType =
+    | SimpleField of field:BuiltInTypeKind
+    | Collection of FieldType
+    | KeyValuePair of FieldType
+    | LiteralField of name:string
+    | TypeReference of name:string
+    member this.Name =
+        match this with
+        | SimpleField BuiltInTypeKind.Int -> "int"
+        | SimpleField BuiltInTypeKind.String -> "string"
+        | SimpleField BuiltInTypeKind.Bool -> "bool"
+        | SimpleField (BuiltInTypeKind.Object | BuiltInTypeKind.Any) -> "obj"
+        | SimpleField b -> failwith $"Unknown simple field {b}"
+        | Collection f -> $"{f.Name} array"
+        | KeyValuePair f -> $"Map<string, {f.Name}>"
+        | LiteralField n | TypeReference n -> n
+
 type ResourceField =
     {
         Name : string
         Description : string option
-        TypeInfo : ResourceFieldType
+        TypeInfo : {| FieldType: FieldType; Optional : bool |}
     }
     member this.Emit () =
         [
             match this.Description with Some d -> indent 3 + $"/// {d}" | None -> ()
-            indent 3 + $"``{this.Name}`` : {this.TypeInfo.TypeName}" + (if this.TypeInfo.IsCollection then " array" else "") + (if this.TypeInfo.Optional then " option" else "")
+            indent 3 + $"``{this.Name}`` : {this.TypeInfo.FieldType.Name}" + (if this.TypeInfo.Optional then " option" else "")
         ]
+type TypeKind =
+    | Record of {| Fields:ResourceField list; TypeName : string |}
+    | DiscriminatedUnion of {| Cases:string list; TypeName : string |}
+
 type ResourceDef =
     {
         Module : string
         Namespace : string
-        Fields : ResourceField list
-        Name : string
+        TypeKind : TypeKind
+        // Fields : ResourceField list
+        // Name : string
     }
     member this.Emit () =
         [
-            indent 1 + $"type {this.Name} ="
-            indent 2 + "{"
-            for field in this.Fields do yield! field.Emit()
-            indent 2 + "}"
-            let args =
-                [
-                    for field in this.Fields |> Seq.sortBy(fun r -> r.TypeInfo.Optional) do
-                        (if field.TypeInfo.Optional then "?" else "") + $"``{field.Name}``"
-                ] |> String.concat ", "
-            indent 2 + $"static member create({args}) ="
-            indent 3 + "{"
-            for field in this.Fields do
-                indent 4 + $"``{field.Name}`` = ``{field.Name}``"
-            indent 3 + "}"
+            match this.TypeKind with
+            | Record record ->
+                indent 1 + $"type {record.TypeName} ="
+                indent 2 + "{"
+                for field in record.Fields do yield! field.Emit()
+                indent 2 + "}"
+                let args =
+                    [
+                        for field in record.Fields |> Seq.sortBy(fun r -> r.TypeInfo.Optional) do
+                            (if field.TypeInfo.Optional then "?" else "") + $"``{field.Name}``"
+                    ] |> String.concat ", "
+                indent 2 + $"static member create({args}) ="
+                indent 3 + "{"
+                for field in record.Fields do
+                    indent 4 + $"``{field.Name}`` = ``{field.Name}``"
+                indent 3 + "}"
+            | DiscriminatedUnion union ->
+                indent 1 + $"type {union.TypeName} ="
+                for case in union.Cases do
+                    indent 2 + $"| {case}"
         ]
 
+let (|Dictionary|Schemas|Standard|) (ot:ObjectType) =
+    if ot.Name.StartsWith "Dictionary<string," then
+        Dictionary
+    elif ot.Name.StartsWith "schemas:" then
+        Schemas
+    else
+        Standard
+
 type Generator() =
-    static let capitalise (s:string) = (Char.ToUpper(s.[0]).ToString()) + s.[1..]
-    static member genType (name:string) (flags:ObjectPropertyFlags) (tb:TypeBase) : ResourceFieldType =
+    static member fieldTypeInfo (name:string) (flags:ObjectPropertyFlags) (tb:TypeBase) : {| FieldType : FieldType; Optional : bool |} =
         let propType =
             match tb with
             | :? BuiltInType as bit ->
-                match bit.Kind with
-                | BuiltInTypeKind.String -> {| Type = "string"; IsCollection = false |}
-                | BuiltInTypeKind.Bool -> {| Type = "bool"; IsCollection = false |}
-                | BuiltInTypeKind.Int -> {| Type = "int"; IsCollection = false |}
-                | BuiltInTypeKind.Object -> {| Type = "obj"; IsCollection = false |}
-                | BuiltInTypeKind.Any -> {| Type = "obj"; IsCollection = false |}
-                | x -> {| Type = $"unknown ({x})"; IsCollection = false |}
+                SimpleField bit.Kind
             | :? StringLiteralType as s ->
-                {| Type = s.Value; IsCollection = false |}
-            | :? UnionType as t ->
-                {| Type = $"obj // {capitalise name}"; IsCollection = false |}
+                LiteralField s.Value
+            | :? UnionType ->
+                TypeReference (capitalise name)
             | :? ObjectType as ot ->
-                if ot.Name.StartsWith "Dictionary<string," then
-                    let t = Generator.genType name ObjectPropertyFlags.Required ot.AdditionalProperties.Type
-                    {| Type = $"Map<string, {t.TypeName}>"; IsCollection = false |}
-                else
-                    {| Type = ot.Name; IsCollection = false |}
+                match ot with
+                | Dictionary ->
+                    let t = Generator.fieldTypeInfo name ObjectPropertyFlags.Required ot.AdditionalProperties.Type
+                    KeyValuePair t.FieldType
+                | Schemas ->
+                    TypeReference "Properties"
+                | Standard ->
+                    TypeReference ot.Name
             | :? ArrayType as a ->
-                let r = Generator.genType name ObjectPropertyFlags.None a.ItemType.Type
-                {| Type = r.TypeName; IsCollection = true |}
+                let r = Generator.fieldTypeInfo name ObjectPropertyFlags.None a.ItemType.Type
+                Collection r.FieldType
             | _ ->
                 failwith $"Unknown type '{tb}'"
-        {
-            TypeName =
-                if propType.Type.StartsWith "schemas:" then "Properties"
-                else propType.Type
-            IsCollection = propType.IsCollection
+        {|
+            FieldType = propType
             Optional = not (flags.HasFlag ObjectPropertyFlags.Required)
-        }
+        |}
 
-    static member genProp (KeyValue(name:string, op:ObjectProperty)) =
-        let rft = Generator.genType name op.Flags op.Type.Type
+    static member properties (KeyValue(name:string, op:ObjectProperty)) =
+        let fieldTypeInfo = Generator.fieldTypeInfo name op.Flags op.Type.Type
         match op.Type.Type with
         | :? StringLiteralType ->
             None
@@ -101,35 +131,37 @@ type Generator() =
                 {
                     Description = if not (String.IsNullOrWhiteSpace op.Description) then Some op.Description else None
                     Name = name
-                    TypeInfo = rft
+                    TypeInfo = fieldTypeInfo
                 }
 
-    static member findTypes (objectType:ObjectType) =
+    static member types (objectType:ObjectType) =
         [
             match objectType.Name with
             | null ->
                 ()
             | name ->
-                {|
-                    TypeName =
-                        if name.StartsWith "schemas:" then "Properties"
-                        else name
-                    Fields =
-                        [
-                            for prop in objectType.Properties do
-                                yield! Option.toList (Generator.genProp prop)
-                        ]
-                |}
+                Record
+                    {|
+                        TypeName =
+                            if name.StartsWith "schemas:" then "Properties"
+                            else name
+                        Fields =
+                            [
+                                for prop in objectType.Properties do
+                                    yield! Option.toList (Generator.properties prop)
+                            ]
+                    |}
+
             for prop in objectType.Properties do
                 match prop.Value.Type.Type with
                 | :? ObjectType as ot ->
                     match ot.AdditionalProperties with
                     | null ->
-                        yield! Generator.findTypes ot
+                        yield! Generator.types ot
                     | props ->
                         match props.Type with
                         | :? ObjectType as ot ->
-                            yield! Generator.findTypes ot
+                            yield! Generator.types ot
                         | _ ->
                             ()
                 | :? ArrayType as at ->
@@ -137,41 +169,54 @@ type Generator() =
                     | :? ObjectType as ot ->
                         match ot.AdditionalProperties with
                         | null ->
-                            yield! Generator.findTypes ot
+                            yield! Generator.types ot
                         | props ->
                             match props.Type with
                             | :? ObjectType as ot ->
-                                yield! Generator.findTypes ot
+                                yield! Generator.types ot
                             | _ ->
                                 ()
                     | _ ->
                         ()
+                | :? UnionType as ut ->
+                    let cases = ut.Elements |> Array.map(fun e -> Generator.fieldTypeInfo "" ObjectPropertyFlags.None e.Type) |> Array.toList
+                    DiscriminatedUnion
+                        {| Cases = cases |> List.map (fun e -> e.FieldType.Name)
+                           TypeName = capitalise prop.Key |}
                 | _ ->
                     ()
         ]
 
-    static member genRec (resourceType:ResourceType) =
+    static member resourceDefinition (resourceType:ResourceType) =
         match resourceType.Name.Split '@' with
         | [| ns; moduleName |] ->
             let ns =
                 ns.Split '/'
                 |> Seq.map (fun r -> $"{capitalise r}")
                 |> String.concat "."
-            let types =
+            let typeKinds =
                 match resourceType.Body.Type with
-                | :? ObjectType as ot -> Generator.findTypes ot
+                | :? ObjectType as ot -> Generator.types ot
                 | _ -> failwith "Unkown"
             [
-                for t in types do
+                for typeKind in typeKinds do
                 {
                     Namespace = ns
                     Module = moduleName
-                    Fields = t.Fields
-                    Name =
-                        if t.TypeName.Contains "/" then
-                            ns.Split '.' |> Array.last |> singular
-                        else
-                            t.TypeName
+                    TypeKind =
+                        match typeKind with
+                        | Record r ->
+                            Record
+                                {| r with
+                                    TypeName =
+                                        if r.TypeName.Contains "/" then
+                                            ns.Split '.' |> Array.last |> singular
+                                        else
+                                            r.TypeName
+                                |}
+                        | _ ->
+                            typeKind
+
                 }
             ]
         | _ ->
@@ -183,7 +228,7 @@ let storageAccounts =
     |> Seq.filter(fun r -> r.Key.StartsWith "Microsoft.Storage/storageAccounts")
     |> Seq.map (fun r -> typeLoader.LoadResourceType r.Value)
     |> Seq.filter (fun r -> r.ScopeType = ScopeType.ResourceGroup)
-    |> Seq.collect Generator.genRec
+    |> Seq.collect Generator.resourceDefinition
     |> Seq.toArray
 
 let groupedByType =
@@ -208,21 +253,17 @@ let groupedByType =
 
 System.IO.File.WriteAllText ("output.fsx", groupedByType)
 
-// let sa =
-//     let typeLoader = Az.TypeLoader()
-//     typeLoader.GetIndexedTypes().Types
-//     |> Seq.filter(fun r -> r.Key.StartsWith "Microsoft.Storage/storageAccounts")
-//     |> Seq.map (fun r -> typeLoader.LoadResourceType r.Value)
-//     |> Seq.filter (fun r -> r.ScopeType = ScopeType.ResourceGroup)
-//     |> Seq.find(fun r -> r.Name = "Microsoft.Storage/storageAccounts/managementPolicies@2019-06-01")
+let sa =
+    let typeLoader = Az.TypeLoader()
+    typeLoader.GetIndexedTypes().Types
+    |> Seq.filter(fun r -> r.Key.StartsWith "Microsoft.Storage/storageAccounts")
+    |> Seq.map (fun r -> typeLoader.LoadResourceType r.Value)
+    |> Seq.filter (fun r -> r.ScopeType = ScopeType.ResourceGroup)
+    |> Seq.find(fun r -> r.Name = "Microsoft.Storage/storageAccounts@2019-06-01")
 
-// let saT = sa.Body.Type :?> ObjectType
-// let propT = saT.Properties.["properties"].Type.Type :?> ObjectType
-// let policy = propT.Properties.["policy"].Type.Type :?> ObjectType
-// let rules = policy.Properties.["rules"].Type.Type :?> ArrayType
-// let definition = (rules.ItemType.Type :?> ObjectType).Properties.["definition"].Type.Type :?> ObjectType
-// let actions = definition.Properties.["actions"].Type.Type :?> ObjectType
-// let version = actions.Properties.["version"].Type.Type :?> ObjectType
+let saT = sa.Body.Type :?> ObjectType
+let propT = saT.Properties.["kind"].Type.Type :?> UnionType
+propT.Elements.[0].Type
 
 // version.Properties.["tierToCool"].Type.Type :?> ObjectType
 
