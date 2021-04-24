@@ -4926,7 +4926,7 @@ module ``2021-01-01`` =
         | None
         | SystemAssigned
         | UserAssigned
-        | SystemAssigned,UserAssigned
+        | SystemAssignedUserAssigned
     type Identity =
         {
             /// The principal ID of resource identity.
@@ -5607,7 +5607,7 @@ module ``2021-02-01`` =
         | None
         | SystemAssigned
         | UserAssigned
-        | SystemAssigned,UserAssigned
+        | SystemAssignedUserAssigned
     type Identity =
         {
             /// The principal ID of resource identity.

@@ -181,7 +181,7 @@ type Generator() =
                 | :? UnionType as ut ->
                     let cases = ut.Elements |> Array.map(fun e -> Generator.fieldTypeInfo "" ObjectPropertyFlags.None e.Type) |> Array.toList
                     DiscriminatedUnion
-                        {| Cases = cases |> List.map (fun e -> e.FieldType.Name)
+                        {| Cases = cases |> List.map (fun e -> e.FieldType.Name.Replace(",", ""))
                            TypeName = capitalise prop.Key |}
                 | _ ->
                     ()
